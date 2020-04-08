@@ -25,9 +25,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -124,7 +122,7 @@ public class PollService {
         // Retrieve all poll details from the voted pollIds.
         List<Long> pollIds = userVotedPollIds.getContent();
 
-        Sort sort = new Sort(Sort.Direction.DESC, "createdAt");
+        Sort sort =  Sort.by(Sort.Direction.DESC, "createdAt");
         List<Poll> polls = pollRepository.findByIdIn(pollIds, sort);
 
         // Map Polls to PollResponses containing vote counts and poll creator details
